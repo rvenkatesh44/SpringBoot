@@ -1,0 +1,38 @@
+server:
+  port: 8082
+
+spring:
+  profiles:
+    active: uat
+
+---
+spring:
+  profiles: dev
+  datasource:
+    driverClassName: org.h2.Driver
+    password: password
+    url: jdbc:h2:mem:dcbapp
+    username: sa
+
+welcome:
+  message: <h1>Welcome DEV Page !!!</h1>
+
+---
+  spring:
+    profiles: uat
+    datasource:
+      driverClassName: org.h2.Driver
+      password: password
+      url: jdbc:h2:mem:dcbapp
+      username: sa
+
+
+  welcome:
+    message: <h1>Welcome UAT Page !!!</h1>
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+          exclude: "env,beans"
